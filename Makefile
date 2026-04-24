@@ -2,6 +2,9 @@ COMPOSE_FILE=./develop/compose.yaml
 BUILD_NAME=netbox-cmdb
 PLUGINS_LIST=netbox_cmdb
 
+export UID=$(shell id -u)
+export GID=$(shell id -g)
+
 
 cbuild:
 	docker compose -f ${COMPOSE_FILE} \

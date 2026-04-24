@@ -2,11 +2,13 @@ ARG python_ver=3.9
 FROM python:${python_ver}
 
 ARG netbox_ver=v3.3.10
+ARG user_id=1000
+ARG group_id=1000
 ENV PYTHONUNBUFFERED 1
 
 RUN pip install --upgrade pip
 
-RUN groupadd -g 1000 netbox && useradd -m -u 1000 -g netbox netbox
+RUN groupadd -g ${group_id} netbox && useradd -m -u ${user_id} -g netbox netbox
 RUN mkdir -p /opt/netbox /source && chown netbox:netbox /opt/netbox /source
 USER netbox
 

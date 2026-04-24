@@ -4,6 +4,9 @@ services:
     build:
       context: ../
       dockerfile: develop/Dockerfile
+      args:
+        user_id: ${UID:-1000}
+        group_id: ${GID:-1000}
     command: >
       sh -c "python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8001"
@@ -23,6 +26,9 @@ services:
     build:
       context: ../
       dockerfile: develop/Dockerfile
+      args:
+        user_id: ${UID:-1000}
+        group_id: ${GID:-1000}
     command: sh -c "python manage.py rqworker --with-scheduler"
     depends_on:
       - netbox
